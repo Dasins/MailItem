@@ -11,6 +11,10 @@ public class MailClient
     private MailServer server;
     // The user running this client.
     private String user;
+    // the asunt
+    private String asunto;
+    
+    
 
     /**
      * Create a mail client run by user and attached to the given server.
@@ -50,9 +54,19 @@ public class MailClient
      * @param to The intended recipient.
      * @param message The text of the message to be sent.
      */
-    public void sendMailItem(String to, String message)
+    public void sendMailItem(String to, String message,String asunto)
     {
-        MailItem item = new MailItem(user, to, message);
+        MailItem item = new MailItem(user, to, message,asunto);
         server.post(item);
     }
+        /**
+     * Return how many mail items are waiting for a user.
+     * @param who The user to check for.
+     * @return How many items are waiting.
+     */
+    public void howManyMailItems()
+    {
+       System.out.println("Tiene mensajes por leer" + server.howManyMailItems(user)); 
+    }
 }
+
